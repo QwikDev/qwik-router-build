@@ -208,6 +208,12 @@ async function fromNodeHttp(url, req, res, mode, getClientConn) {
 var import_meta = {};
 function createQwikRouter(opts) {
   var _a;
+  if (opts.qwikCityPlan && !opts.qwikRouterConfig) {
+    console.warn("qwikCityPlan is deprecated. Use qwikRouterConfig instead.");
+    opts.qwikRouterConfig = opts.qwikCityPlan;
+  } else if (!opts.qwikRouterConfig) {
+    throw new Error("qwikRouterConfig is required.");
+  }
   const qwikSerializer = {
     _deserialize: import_internal._deserialize,
     _serialize: import_internal._serialize,

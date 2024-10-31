@@ -9,6 +9,12 @@ import {
   requestHandler
 } from "../request-handler/index.mjs";
 function createQwikRouter(opts) {
+  if (opts.qwikCityPlan && !opts.qwikRouterConfig) {
+    console.warn("qwikCityPlan is deprecated. Use qwikRouterConfig instead.");
+    opts.qwikRouterConfig = opts.qwikCityPlan;
+  } else if (!opts.qwikRouterConfig) {
+    throw new Error("qwikRouterConfig is required.");
+  }
   try {
     new globalThis.TextEncoderStream();
   } catch (e) {

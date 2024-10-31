@@ -108,7 +108,7 @@ declare interface PluginOptions {
  * @deprecated Use `qwikRouter` instead. Will be removed in V3
  * @public
  */
-export declare function qwikCity(userOpts?: QwikRouterVitePluginOptions): PluginOption[];
+export declare function qwikCity(userOpts?: QwikCityVitePluginOptions): PluginOption[];
 
 /**
  * @deprecated Use `QwikRouterPlugin` instead. Will be removed in V3

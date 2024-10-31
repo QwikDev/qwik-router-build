@@ -61,6 +61,12 @@ var MIME_TYPES = {
 import { extname, fromFileUrl, join } from "https://deno.land/std/path/mod.ts";
 function createQwikRouter(opts) {
   var _a;
+  if (opts.qwikCityPlan && !opts.qwikRouterConfig) {
+    console.warn("qwikCityPlan is deprecated. Use qwikRouterConfig instead.");
+    opts.qwikRouterConfig = opts.qwikCityPlan;
+  } else if (!opts.qwikRouterConfig) {
+    throw new Error("qwikRouterConfig is required.");
+  }
   const qwikSerializer = {
     _deserialize,
     _serialize,

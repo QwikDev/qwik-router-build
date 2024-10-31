@@ -200,6 +200,12 @@ import { _deserialize, _serialize, _verifySerializable } from "@qwik.dev/core/in
 import { setServerPlatform } from "@qwik.dev/core/server";
 import { requestHandler } from "../request-handler/index.mjs";
 function createQwikRouter(opts) {
+  if (opts.qwikCityPlan && !opts.qwikRouterConfig) {
+    console.warn("qwikCityPlan is deprecated. Use qwikRouterConfig instead.");
+    opts.qwikRouterConfig = opts.qwikCityPlan;
+  } else if (!opts.qwikRouterConfig) {
+    throw new Error("qwikRouterConfig is required.");
+  }
   const qwikSerializer = {
     _deserialize,
     _serialize,

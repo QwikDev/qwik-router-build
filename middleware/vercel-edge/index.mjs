@@ -11,6 +11,12 @@ var VERCEL_SKEW_PROTECTION_ENABLED = "VERCEL_SKEW_PROTECTION_ENABLED";
 var VERCEL_DEPLOYMENT_ID = "VERCEL_DEPLOYMENT_ID";
 var BASE_URL = "BASE_URL";
 function createQwikRouter(opts) {
+  if (opts.qwikCityPlan && !opts.qwikRouterConfig) {
+    console.warn("qwikCityPlan is deprecated. Use qwikRouterConfig instead.");
+    opts.qwikRouterConfig = opts.qwikCityPlan;
+  } else if (!opts.qwikRouterConfig) {
+    throw new Error("qwikRouterConfig is required.");
+  }
   const qwikSerializer = {
     _deserialize,
     _serialize,

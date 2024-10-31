@@ -65,6 +65,12 @@ var MIME_TYPES = {
 // packages/qwik-router/src/middleware/bun/index.ts
 function createQwikRouter(opts) {
   var _a;
+  if (opts.qwikCityPlan && !opts.qwikRouterConfig) {
+    console.warn("qwikCityPlan is deprecated. Use qwikRouterConfig instead.");
+    opts.qwikRouterConfig = opts.qwikCityPlan;
+  } else if (!opts.qwikRouterConfig) {
+    throw new Error("qwikRouterConfig is required.");
+  }
   globalThis.TextEncoderStream ||= _TextEncoderStream_polyfill;
   const qwikSerializer = { _deserialize, _serialize, _verifySerializable };
   if (opts.manifest) {

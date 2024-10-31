@@ -1,6 +1,12 @@
 // packages/qwik-router/src/middleware/firebase/index.ts
 import { createQwikRouter as createQwikRouterNode } from "@qwik.dev/router/middleware/node";
 function createQwikRouter(opts) {
+  if (opts.qwikCityPlan && !opts.qwikRouterConfig) {
+    console.warn("qwikCityPlan is deprecated. Use qwikRouterConfig instead.");
+    opts.qwikRouterConfig = opts.qwikCityPlan;
+  } else if (!opts.qwikRouterConfig) {
+    throw new Error("qwikRouterConfig is required.");
+  }
   const { staticFile, notFound, router } = createQwikRouterNode({
     render: opts.render,
     manifest: opts.manifest,

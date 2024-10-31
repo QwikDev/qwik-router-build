@@ -182,6 +182,12 @@ async function fromNodeHttp(url, req, res, mode, getClientConn) {
 // packages/qwik-router/src/middleware/node/index.ts
 function createQwikRouter(opts) {
   var _a;
+  if (opts.qwikCityPlan && !opts.qwikRouterConfig) {
+    console.warn("qwikCityPlan is deprecated. Use qwikRouterConfig instead.");
+    opts.qwikRouterConfig = opts.qwikCityPlan;
+  } else if (!opts.qwikRouterConfig) {
+    throw new Error("qwikRouterConfig is required.");
+  }
   const qwikSerializer = {
     _deserialize,
     _serialize,

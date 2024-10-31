@@ -13,7 +13,7 @@ import type { ServerResponse } from 'node:http';
 export declare const createQwikCity: typeof createQwikRouter;
 
 /** @public */
-export declare function createQwikRouter(opts: QwikRouterNodeRequestOptions): {
+export declare function createQwikRouter(opts: QwikRouterNodeRequestOptions | QwikCityNodeRequestOptions): {
     router: (req: IncomingMessage | Http2ServerRequest, res: ServerResponse, next: NodeRequestNextFunction) => Promise<void>;
     notFound: (req: IncomingMessage | Http2ServerRequest, res: ServerResponse, next: (e: any) => void) => Promise<void>;
     staticFile: (req: IncomingMessage | Http2ServerRequest, res: ServerResponse, next: (e?: any) => void) => Promise<void>;

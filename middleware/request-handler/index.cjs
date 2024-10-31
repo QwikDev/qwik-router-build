@@ -1441,6 +1441,9 @@ function isContentType(headers, ...types) {
 // packages/qwik-router/src/middleware/request-handler/request-handler.ts
 async function requestHandler(serverRequestEv, opts, qwikSerializer) {
   const { render, qwikRouterConfig, manifest, checkOrigin } = opts;
+  if (!qwikRouterConfig) {
+    throw new Error("qwikRouterConfig is required.");
+  }
   const pathname = serverRequestEv.url.pathname;
   const matchPathname = getRouteMatchPathname(pathname, qwikRouterConfig.trailingSlash);
   const routeAndHandlers = await loadRequestHandlers(

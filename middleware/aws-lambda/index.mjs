@@ -1,6 +1,12 @@
 // packages/qwik-router/src/middleware/aws-lambda/index.ts
 import { createQwikRouter as createQwikRouterNode } from "@qwik.dev/router/middleware/node";
 function createQwikRouter(opts) {
+  if (opts.qwikCityPlan && !opts.qwikRouterConfig) {
+    console.warn("qwikCityPlan is deprecated. Use qwikRouterConfig instead.");
+    opts.qwikRouterConfig = opts.qwikCityPlan;
+  } else if (!opts.qwikRouterConfig) {
+    throw new Error("qwikRouterConfig is required.");
+  }
   try {
     const { router, staticFile, notFound } = createQwikRouterNode({
       render: opts.render,

@@ -3,6 +3,7 @@
 import { Http2ServerRequest } from 'http2';
 import { IncomingMessage } from 'http';
 import { NodeRequestNextFunction } from '@qwik.dev/router/middleware/node';
+import type { QwikCityPlan } from '@qwik.dev/router';
 import type { QwikManifest } from '@qwik.dev/core/optimizer';
 import type { QwikRouterConfig } from '@qwik.dev/router';
 import type { Render } from '@qwik.dev/core/server';
@@ -13,6 +14,8 @@ declare interface AwsOpt {
     render: Render;
     manifest: QwikManifest;
     qwikRouterConfig: QwikRouterConfig;
+    /** @deprecated Use `QwikRouterConfig` instead. Will be removed in V3 */
+    qwikCityPlan?: QwikCityPlan;
 }
 
 /**
